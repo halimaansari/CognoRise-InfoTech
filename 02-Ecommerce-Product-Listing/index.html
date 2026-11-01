@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Set the character encoding so text renders correctly. -->
+  <meta charset="UTF-8">
+
+  <!-- Make the layout adapt to mobile, tablet, and desktop screens. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Basic page metadata for search engines and browser previews. -->
+  <meta
+    name="description"
+    content="Discover everyday essentials and thoughtfully selected products at Nova Market."
+  >
+  <meta name="theme-color" content="#f8f7f4">
+
+  <!-- The title appears in the browser tab and search results. -->
+  <title>Nova Market | Discover Your Next Favorite</title>
+
+  <!-- Load the fonts before applying the site's visual styles. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Keep styling and behavior separate from the HTML structure. -->
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <!-- A skip link lets keyboard users jump directly to the main content. -->
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- Announce a short brand message above the main navigation. -->
+  <div class="announcement-bar">
+    Discover something you love. Explore our latest collection.
+  </div>
+
+  <!-- The header contains the brand, primary navigation, and cart control. -->
+  <header class="site-header">
+    <div class="container header-inner">
+
+      <a class="brand" href="#home" aria-label="Nova Market home">
+        nova<span aria-hidden="true">.</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#products">Shop</a>
+        <a href="#about">Our Story</a>
+      </nav>
+
+      <div class="header-actions">
+        <!-- This button focuses the search field; JavaScript will handle it. -->
+        <button
+          class="text-button"
+          id="search-toggle"
+          type="button"
+          aria-controls="product-search"
+        >
+          Search
+        </button>
+
+        <!-- The count will be updated when products are added to the cart. -->
+        <button
+          class="cart-button"
+          id="cart-toggle"
+          type="button"
+          aria-label="Shopping cart, 0 items"
+        >
+          Bag <span id="cart-count" aria-hidden="true">0</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- Hero section introduces the brand and directs users to the products. -->
+    <section class="hero container" id="home">
+      <div class="hero-content">
+        <p class="eyebrow">THE EVERYDAY EDIT</p>
+
+        <h1>Good finds.<br>Better living.</h1>
+
+        <p class="hero-description">
+          Discover useful, beautiful products picked to make
+          everyday life a little better.
+        </p>
+
+        <a class="primary-button" href="#products">
+          Explore the collection
+          <span aria-hidden="true">↗</span>
+        </a>
+
+        <p class="hero-note">Thoughtful picks. Simple shopping.</p>
+      </div>
+
+      <!-- Decorative artwork is hidden from assistive technology. -->
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-orbit orbit-one"></div>
+        <div class="hero-orbit orbit-two"></div>
+
+        <div class="hero-product">
+          <span class="hero-product-label">THE NEW EDIT</span>
+          <span class="hero-product-symbol">✳</span>
+          <p>Little things.<br>Big difference.</p>
+        </div>
+
+        <span class="floating-note note-one">Made for everyday</span>
+        <span class="floating-note note-two">Your next favorite ↗</span>
+      </div>
+    </section>
+
+    <!-- Brief benefits communicate the store's shopping experience. -->
+    <section class="benefits container" aria-label="Shopping highlights">
+      <p><span aria-hidden="true">✳</span> Thoughtfully selected</p>
+      <p><span aria-hidden="true">◇</span> Easy to explore</p>
+      <p><span aria-hidden="true">↗</span> Discover something new</p>
+    </section>
+
+    <!-- Product discovery: JavaScript will populate the grid from product data. -->
+    <section class="products-section container" id="products">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">CURATED FOR YOU</p>
+          <h2>Find your next favorite.</h2>
+          <p class="section-description">
+            Explore the collection and discover something worth keeping.
+          </p>
+        </div>
+
+        <!-- JavaScript will replace this text with the result count. -->
+        <p class="product-count" id="product-count" aria-live="polite">
+          Loading products...
+        </p>
+      </div>
+
+      <!-- Search and filters let users narrow down the product collection. -->
+      <div class="shop-toolbar">
+
+        <label class="search-field">
+          <span aria-hidden="true">⌕</span>
+          <span class="visually-hidden">Search products</span>
+          <input
+            id="product-search"
+            type="search"
+            placeholder="Search products..."
+            autocomplete="off"
+          >
+        </label>
+
+        <label class="filter-control">
+          <span class="visually-hidden">Filter by category</span>
+          <select id="category-filter">
+            <option value="all">All categories</option>
+          </select>
+        </label>
+
+        <label class="filter-control">
+          <span class="visually-hidden">Sort products</span>
+          <select id="sort-filter">
+            <option value="featured">Featured</option>
+            <option value="price-low">Price: Low to high</option>
+            <option value="price-high">Price: High to low</option>
+            <option value="rating">Top rated</option>
+            <option value="name">Name: A to Z</option>
+          </select>
+        </label>
+
+      </div>
+
+      <!-- A live region announces result changes to assistive technology. -->
+      <p class="results-message" id="results-message" aria-live="polite">
+        Loading your collection...
+      </p>
+
+      <!-- Product cards will be rendered here by JavaScript. -->
+      <div class="product-grid" id="product-grid"></div>
+
+      <!-- Show this state when a search or filter returns no products. -->
+      <div class="empty-state" id="empty-state" hidden>
+        <h3>No products found</h3>
+        <p>Try another search term or choose a different category.</p>
+        <button class="secondary-button" id="reset-filters" type="button">
+          Reset filters
+        </button>
+      </div>
+
+      <!-- Display a recoverable message if product loading fails. -->
+      <div class="load-error" id="load-error" role="alert" hidden>
+        <h3>We couldn't load the collection.</h3>
+        <p>Check your connection and try again.</p>
+        <button class="secondary-button" id="retry-products" type="button">
+          Try again
+        </button>
+      </div>
+    </section>
+
+    <!-- A short brand story gives the storefront a complete page structure. -->
+    <section class="story-section" id="about">
+      <div class="container">
+        <p class="eyebrow">A LITTLE ABOUT NOVA</p>
+        <h2>Shopping should feel simple.</h2>
+        <p>
+          We're building a smoother way to discover everyday essentials.
+          Browse, compare and find products that fit your life.
+        </p>
+        <a href="#products" class="text-link">
+          Explore the collection <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Keep footer information separate from the main shopping content. -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="brand" href="#home">
+        nova<span aria-hidden="true">.</span>
+      </a>
+
+      <p>Discover your next favorite.</p>
+      <p class="footer-credit">
+        A web development project by Halima Sadia Ansari.
+      </p>
+
+      <p>© <span id="current-year"></span> Nova Market</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript can use this live region for short cart notifications. -->
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>
